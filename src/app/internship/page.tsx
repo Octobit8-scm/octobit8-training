@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { courses } from '../../data/courses'
+import { courses } from '@/data/courses'
 
 export default function InternshipPage() {
   const internshipPrograms = [

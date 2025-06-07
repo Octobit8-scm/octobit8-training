@@ -12,6 +12,21 @@ export const metadata: Metadata = {
   description: 'Learn DevOps, Cloud Computing, AI Development, and Web Development with hands-on projects and expert guidance.',
 }
 
+// Extracted inner layout component for testing
+export function AppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={`${inter.className} bg-[#F8FAFC]`}>
+      <div className="min-h-screen flex flex-col">
+        <Navigation />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </div>
+  )
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -19,14 +34,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#F8FAFC]`}>
-        <div className="min-h-screen flex flex-col">
-          <Navigation />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+      <body>
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   )

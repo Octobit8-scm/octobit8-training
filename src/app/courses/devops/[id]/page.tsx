@@ -32,11 +32,6 @@ export default function CoursePage({ params }: CoursePageProps) {
       courseName: course.name,
       description: course.description,
       duration: course.duration,
-      level: course.level,
-      modules: course.modules,
-      prerequisites: course.prerequisites,
-      tools: course.tools,
-      finalProject: course.finalProject
     }
 
     // Convert to JSON and create blob
@@ -141,12 +136,6 @@ export default function CoursePage({ params }: CoursePageProps) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   {course.duration}
-                </div>
-                <div className="flex items-center mr-6">
-                  <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="capitalize">{course.level}</span>
                 </div>
                 <div className="flex items-center">
                   <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,145 +262,6 @@ export default function CoursePage({ params }: CoursePageProps) {
               </div>
             </div>
           </div>
-
-          {/* Course Schedule */}
-          <div className="border-t border-gray-200">
-            <div className="p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Course Schedule</h2>
-              <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                {course.modules?.map((module, index) => (
-                  <div key={index} className="relative pl-12 pb-8">
-                    <div className="absolute left-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
-                      {index + 1}
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">{module.title}</h3>
-                        <span className="text-sm text-gray-500">{module.duration}</span>
-                      </div>
-                      <p className="text-gray-600 mb-4">Week {index + 1}</p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="text-sm font-semibold text-gray-700 mb-2">Topics</h4>
-                          <ul className="list-disc list-inside text-gray-600 space-y-1">
-                            {module.topics.slice(0, 3).map((topic, idx) => (
-                              <li key={idx}>{topic}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-semibold text-gray-700 mb-2">Activities</h4>
-                          <ul className="list-disc list-inside text-gray-600 space-y-1">
-                            {module.activities.slice(0, 3).map((activity, idx) => (
-                              <li key={idx}>{activity}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Course Modules */}
-          {course.modules && (
-            <div className="border-t border-gray-200">
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Course Modules</h2>
-                <div className="space-y-6">
-                  {course.modules.map((module, index) => (
-                    <div key={index} className="border-l-4 border-blue-500 pl-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">{module.title}</h3>
-                        <span className="text-sm text-gray-500">{module.duration}</span>
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="text-sm font-semibold text-gray-700 mb-2">Topics</h4>
-                          <ul className="list-disc list-inside text-gray-600 space-y-1">
-                            {module.topics.map((topic, idx) => (
-                              <li key={idx}>{topic}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-semibold text-gray-700 mb-2">Activities</h4>
-                          <ul className="list-disc list-inside text-gray-600 space-y-1">
-                            {module.activities.map((activity, idx) => (
-                              <li key={idx}>{activity}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Prerequisites */}
-          {course.prerequisites && (
-            <div className="border-t border-gray-200">
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Prerequisites</h2>
-                <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  {course.prerequisites.map((prerequisite, index) => (
-                    <li key={index}>{prerequisite}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
-
-          {/* Tools & Technologies */}
-          {course.tools && (
-            <div className="border-t border-gray-200">
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Tools & Technologies</h2>
-                <div className="flex flex-wrap gap-2">
-                  {course.tools.map((tool, index) => (
-                    <span key={index} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Final Project */}
-          {course.finalProject && (
-            <div className="border-t border-gray-200">
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Final Project</h2>
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">{course.finalProject.objective}</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-lg font-medium text-gray-900 mb-2">Requirements</h4>
-                      <ul className="list-disc list-inside text-gray-600 space-y-2">
-                        {course.finalProject.requirements.map((req, index) => (
-                          <li key={index}>{req}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium text-gray-900 mb-2">Evaluation Criteria</h4>
-                      <ul className="list-disc list-inside text-gray-600 space-y-2">
-                        {course.finalProject.evaluationCriteria.map((criteria, index) => (
-                          <li key={index}>{criteria}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Enrollment Form */}
           <div className="border-t border-gray-200">
